@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+import argparse
 
 # Screening Test: Perform data analysis and plotting on dataset of fake student records.
     # Shows the records of 50 CS students, spanning 6 quarters. For each quarter, we know its timestamp
@@ -29,3 +30,112 @@ import pandas as pd
         # - how many quarters until graduation, calculated with the UC Davis average of 16 units/quarter
             # - as an extension for the function above, is the student on track to graduate or not (meeting avg 16 units/quarter or no)
         # - detect students with non-consecutive quarters and calculate avg gpa to see if breaks from academics affects gpa
+# Plot function naming convention: plot_target_xaxis_yaxis
+
+
+def load_csv(csv_filename):
+    csv_data = pd.read_csv(csv_filename)
+    return csv_data
+
+def get_quarter_data(csv_data, quarter, data_type='Overall_GPA'):
+    quarter_map = {
+        'WQ': '01',
+        'SQ': '03',
+        'FQ': '08'
+    }
+
+    quarter_month = quarter_map.get(quarter)
+
+    data_list = []
+    for i in range(1, 6):
+        timestamp_col = f'Q{i}_Timestamp'
+        data_col = f'Q{i}_{data_type}'
+
+        if timestamp_col in csv_data.columns and data_col in csv_data.columns:
+            matching_rows = csv_data[timestamp_col].astype(str).str[4:6] == quarter_month
+            data_list.append(csv_data.loc[matching_rows, data_col].values)
+
+    return np.concatenate(data_list)
+
+def get_all_quarters_data(csv_data, data_type='Overall_GPA'):
+    all_data = []
+    for i in range(1, 6):
+        data_col = f'Q{i}_{data_type}'
+        if data_col in csv_data.columns:
+            all_data.append(csv_data[data_col].dropna().values)
+
+    return np.concatenate(all_data)
+
+
+def plot_all_student_gpa(csv_data, quarter=None):
+    if quarter:
+        gpa = get_quarter_data(csv_data, quarter, data_type='Overall_GPA')
+    else:
+        gpa = get_all_quarters_data(csv_data, data_type='Overall_GPA')
+
+    avg_gpa = np.mean(gpa)
+
+    plt.plot(gpa, label="Student GPA")
+    plt.axhline(y=avg_gpa, color='r', linestyle='--', label=f"Average GPA: {avg_gpa:.2f}")
+    plt.title(f'All Students GPA {"(Quarter " + str(quarter) + ")" if quarter else "(All Quarters)"}')
+    plt.xlabel('Student')
+    plt.ylabel('GPA')
+    plt.legend()
+    filename = f'all_student_gpa_{quarter if quarter else "all_quarters"}.png'
+    plt.savefig(filename)
+    plt.close()
+
+
+def plot_all_gpa_cscredits(csv_data, quarter=None):
+    if quarter:
+        gpa = get_quarter_data(csv_data, quarter, data_type='Overall_GPA')
+        cs_credits = get_quarter_data(csv_data, quarter, data_type='CS_Units')
+    else:
+        gpa = get_all_quarters_data(csv_data, data_type='Overall_GPA')
+        cs_credits = get_all_quarters_data(csv_data, data_type='CS_Units')
+
+    plt.scatter(cs_credits, gpa)
+    plt.title(f'GPA vs CS Credits {"(Quarter " + str(quarter) + ")" if quarter else "(All Quarters)"}')
+    plt.xlabel('CS Credits')
+    plt.ylabel('GPA')
+    filename = f'gpa_vs_cs_credits_{quarter if quarter else "all_quarters"}.png'
+    plt.savefig(filename)
+    plt.close()
+
+def plot_all_gpa_allcredits(csv_data, quarter=None):
+    if quarter:
+        gpa = get_quarter_data(csv_data, quarter, data_type='Overall_GPA')
+        total_credits = get_quarter_data(csv_data, quarter, data_type='Total_Units')
+    else:
+        gpa = get_all_quarters_data(csv_data, data_type='Overall_GPA')
+        total_credits = get_all_quarters_data(csv_data, data_type='Total_Units')
+
+    plt.scatter(total_credits, gpa)
+    plt.title(f'GPA vs All Credits {"(Quarter " + str(quarter) + ")" if quarter else "(All Quarters)"}')
+    plt.xlabel('Total Credits')
+    plt.ylabel('GPA')
+    filename = f'gpa_vs_all_credits_{quarter if quarter else "all_quarters"}.png'
+    plt.savefig(filename)
+    plt.close()
+
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('csv_file', type=str)
+    parser.add_argument('--quarter', type=str)
+    parser.add_argument('--plot', type=str)
+
+    args = parser.parse_args()
+
+    csv_data = load_csv(args.csv_file)
+
+    if args.plot == 'gpa_vs_cs_credits':
+        plot_all_gpa_cscredits(csv_data, quarter=args.quarter)
+    elif args.plot == 'gpa_vs_all_credits':
+        plot_all_gpa_allcredits(csv_data, quarter=args.quarter)
+    else:
+        plot_all_student_gpa(csv_data, quarter=args.quarter)
+
+if __name__ == '__main__':
+    main()
