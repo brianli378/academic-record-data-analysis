@@ -153,7 +153,7 @@ def plot_avggpa_allquarters(csv_data):
         plt.grid(True)
     else:
         plt.text(0.5, 0.5, 'No data available', horizontalalignment='center', verticalalignment='center')
-    filename = 'gpa_average_over_time.png'
+    filename = 'Output/gpa_average_over_time.png'
     plt.savefig(filename)
     plt.close()
 
