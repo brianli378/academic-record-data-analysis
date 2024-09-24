@@ -21,14 +21,6 @@ import argparse
         # - plot graph with all students gpa vs all credits including non-cs (command line argument to choose a specific quarter or across all quarters combined)
         # - plot graph comparing gpa across different quarters
 
-    # - CSV functions:
-        # - use average gpa of all students combined and avg gpa of each student to classify each student into into groups of
-            # - above average (4.0 < gpa < avggpa+0.5), average (avggpa+0.5 < gpa < avggpa-0.5), below average (gpa < avggpa-0.5)
-        # - gpa trend of each student (going up or down)
-        # - gpa consistency of each student (calculated using variance)
-        # - how many quarters until graduation, calculated with the UC Davis average of 16 units/quarter
-            # - as an extension for the function above, is the student on track to graduate or not (meeting avg 16 units/quarter or no)
-        # - detect students with non-consecutive quarters and calculate avg gpa to see if breaks from academics affects gpa
 # Plot function naming convention: plot_target_xaxis_yaxis
 
 

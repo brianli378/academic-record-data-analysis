@@ -1,0 +1,51 @@
+StudentID,Average GPA,Group,GPA Trend,GPA Variance,Quarters Until Graduation,Graduation on Track?,Had Break,GPA Pre-Break,GPA Post-Break,GPA Change
+1,3.3,Above Average,Both,0.18,8,Not On Track,Yes,2.83,3.94,1.11
+2,2.45,Below Average,Both,0.07,8,Not On Track,Yes,2.03,2.55,0.52
+3,2.86,Below Average,Both,0.17,8,Not On Track,No,N/A,N/A,N/A
+4,2.82,Below Average,Both,0.08,8,Not On Track,No,N/A,N/A,N/A
+5,2.84,Below Average,Both,0.17,7,Not On Track,No,N/A,N/A,N/A
+6,3.09,Average,Both,0.18,7,Not On Track,No,N/A,N/A,N/A
+7,2.96,Average,Both,0.24,7,Not On Track,Yes,3.16,3.05,-0.11
+8,2.85,Below Average,Both,0.33,7,Not On Track,Yes,2.98,2.65,-0.33
+9,3.09,Average,Both,0.18,8,Not On Track,No,N/A,N/A,N/A
+10,2.9,Average,Both,0.09,7,Not On Track,Yes,3.2,2.95,-0.25
+11,2.99,Average,Both,0.34,8,Not On Track,No,N/A,N/A,N/A
+12,3.0,Average,Both,0.36,8,Not On Track,Yes,3.52,2.96,-0.56
+13,3.14,Above Average,Both,0.21,8,Not On Track,Yes,3.42,3.73,0.31
+14,2.67,Below Average,Both,0.1,7,Not On Track,No,N/A,N/A,N/A
+15,2.87,Below Average,Both,0.32,7,Not On Track,Yes,3.29,2.12,-1.17
+16,3.09,Average,Both,0.27,7,Not On Track,No,N/A,N/A,N/A
+17,3.23,Above Average,Both,0.2,7,Not On Track,No,N/A,N/A,N/A
+18,3.09,Average,Both,0.13,7,Not On Track,No,N/A,N/A,N/A
+19,2.85,Below Average,Both,0.13,7,Not On Track,Yes,3.03,3.23,0.2
+20,2.87,Below Average,Both,0.04,8,Not On Track,Yes,2.95,2.86,-0.09
+21,3.31,Above Average,Both,0.43,7,Not On Track,Yes,2.12,3.36,1.24
+22,3.09,Average,Both,0.17,7,Not On Track,Yes,2.99,2.56,-0.43
+23,3.04,Average,Decreasing,0.09,7,Not On Track,No,N/A,N/A,N/A
+24,2.91,Average,Both,0.47,7,Not On Track,Yes,2.67,2.89,0.22
+25,2.98,Average,Both,0.37,7,Not On Track,No,N/A,N/A,N/A
+26,3.15,Above Average,Both,0.53,8,Not On Track,No,N/A,N/A,N/A
+27,2.53,Below Average,Both,0.58,8,Not On Track,No,N/A,N/A,N/A
+28,3.11,Above Average,Both,0.13,6,On Track,Yes,3.43,3.58,0.15
+29,3.28,Above Average,Both,0.06,7,Not On Track,Yes,3.04,3.02,-0.02
+30,3.15,Above Average,Increasing,0.1,7,Not On Track,No,N/A,N/A,N/A
+31,3.15,Above Average,Both,0.15,7,On Track,No,N/A,N/A,N/A
+32,3.35,Above Average,Both,0.05,7,Not On Track,No,N/A,N/A,N/A
+33,3.12,Above Average,Both,0.25,8,Not On Track,No,N/A,N/A,N/A
+34,2.96,Average,Both,0.1,8,Not On Track,No,N/A,N/A,N/A
+35,2.61,Below Average,Both,0.12,8,Not On Track,No,N/A,N/A,N/A
+36,3.11,Above Average,Both,0.07,7,Not On Track,No,N/A,N/A,N/A
+37,3.18,Above Average,Both,0.05,7,Not On Track,No,N/A,N/A,N/A
+38,3.64,Above Average,Both,0.09,7,Not On Track,Yes,3.85,3.48,-0.37
+39,2.77,Below Average,Both,0.39,7,Not On Track,No,N/A,N/A,N/A
+40,2.89,Below Average,Both,0.16,7,Not On Track,No,N/A,N/A,N/A
+41,2.72,Below Average,Both,0.16,7,Not On Track,No,N/A,N/A,N/A
+42,3.21,Above Average,Both,0.21,7,Not On Track,No,N/A,N/A,N/A
+43,3.37,Above Average,Both,0.33,8,Not On Track,No,N/A,N/A,N/A
+44,2.89,Below Average,Both,0.51,8,Not On Track,Yes,3.53,2.14,-1.39
+45,2.63,Below Average,Both,0.19,8,Not On Track,Yes,3.18,1.95,-1.23
+46,2.71,Below Average,Both,0.06,7,On Track,Yes,2.74,2.48,-0.26
+47,3.13,Above Average,Both,0.27,7,Not On Track,No,N/A,N/A,N/A
+48,3.25,Above Average,Both,0.5,7,Not On Track,Yes,3.77,3.35,-0.42
+49,2.76,Below Average,Both,0.42,7,Not On Track,Yes,2.46,4.02,1.56
+50,2.95,Average,Both,0.34,7,Not On Track,No,N/A,N/A,N/A
