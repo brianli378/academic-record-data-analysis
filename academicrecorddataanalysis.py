@@ -19,7 +19,6 @@ import argparse
         # - plot graph with gpa of all students 1-50, also displaying the average gpa. (command line argument to choose a specific quarter or across all quarters combined)
         # - plot graph with all students gpa vs cs credits (command line argument to choose a specific quarter or across all quarters combined)
         # - plot graph with all students gpa vs all credits including non-cs (command line argument to choose a specific quarter or across all quarters combined)
-        # - plot graph with students gpa vs units taken (command line argument to choose a specific quarter or across all quarters combined)
         # - plot graph comparing gpa across different quarters
 
     # - CSV functions:
@@ -118,6 +117,54 @@ def plot_all_gpa_allcredits(csv_data, quarter=None):
     plt.savefig(filename)
     plt.close()
 
+def plot_avggpa_allquarters(csv_data):
+    quarter_map = {
+        '01': 'WQ',
+        '03': 'SQ',
+        '08': 'FQ'
+    }
+
+    results = {}
+
+    for i in range(1, 6):
+        timestamp_col = f'Q{i}_Timestamp'
+        gpa_col = f'Q{i}_Overall_GPA'
+
+        if timestamp_col in csv_data.columns and gpa_col in csv_data.columns:
+            csv_data[timestamp_col] = csv_data[timestamp_col].astype(str)
+            filtered_data = csv_data[csv_data[timestamp_col].str.len() == 6]
+            filtered_data = filtered_data[filtered_data[timestamp_col].str[4:6].isin(quarter_map.keys())]
+
+            for index, row in filtered_data.iterrows():
+                year = row[timestamp_col][:4]
+                quarter_code = row[timestamp_col][4:6]
+                quarter_key = f"{year}{quarter_map[quarter_code]}"
+                if quarter_key not in results:
+                    results[quarter_key] = []
+                results[quarter_key].append(row[gpa_col])
+
+    average_gpas = {key: np.mean(values) for key, values in results.items() if values}
+
+
+    sorted_quarters = sorted(average_gpas.items())
+
+    timestamps, gpas = zip(*sorted_quarters) if sorted_quarters else ([], [])
+
+    # Plot
+    plt.figure(figsize=(10, 5))
+    if timestamps:
+        plt.plot(timestamps, gpas, marker='o')
+        plt.title('Average GPA Over Time')
+        plt.xlabel('Time (YearQuarter)')
+        plt.ylabel('Average GPA')
+        plt.xticks(rotation=33)
+        plt.grid(True)
+    else:
+        plt.text(0.5, 0.5, 'No data available', horizontalalignment='center', verticalalignment='center')
+    filename = 'gpa_average_over_time.png'
+    plt.savefig(filename)
+    plt.close()
+
 
 
 def main():
@@ -134,6 +181,8 @@ def main():
         plot_all_gpa_cscredits(csv_data, quarter=args.quarter)
     elif args.plot == 'gpa_vs_all_credits':
         plot_all_gpa_allcredits(csv_data, quarter=args.quarter)
+    elif args.plot == 'gpa_average_allquarters':
+        plot_avggpa_allquarters(csv_data)
     else:
         plot_all_student_gpa(csv_data, quarter=args.quarter)
 
